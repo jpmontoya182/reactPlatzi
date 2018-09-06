@@ -1,19 +1,13 @@
-import React, { Component } from 'react';
+import React, { PureComponent } from 'react';
 
 // valida el contenido de las propiedades
 import PropTypes from 'prop-types';
 import './media.css'
 
-class Media extends Component{
-    handleClick = (event)=>{        
-        this.setState({
-            author: 'Ernesto el che guevara.'
-        })
-        console.log(this.props);        
-    }
+class Media extends PureComponent {
     render(){       
         return (
-            <div className="Media" onClick={this.handleClick} >
+            <div className="Media" onClick={this.props.handleClick} >
                 <div className="Media-cover">
                     <img 
                         src={this.props.cover}
