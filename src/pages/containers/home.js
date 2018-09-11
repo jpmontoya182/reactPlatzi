@@ -1,9 +1,7 @@
 import React, {Component} from 'react';
-
 import HomeLayout from '../components/home-layout';
 import RelatedLayout from '../components/related-layout'
 import Categories from '../../categories/components/categories'
-
 import ModalContainer from '../../widgets/containers/modal'
 import Modal from '../../widgets/components/modal'
 import HandleError  from '../../errores/containers/handle-error'
@@ -14,9 +12,10 @@ class Home extends Component {
         modalVisible : false
     } 
 
-    handleOpenModal =() =>{
+    handleOpenModal =(media) =>{
         this.setState({
-            modalVisible: true
+            modalVisible: true,
+            media
         })
     }
 
@@ -31,9 +30,7 @@ class Home extends Component {
             <HandleError>       
                 <HomeLayout> 
                     <RelatedLayout /> 
-                    <VideoPlayer 
-                        autoplay
-                    />
+                    
                     <Categories 
                         categories={this.props.data.categories} 
                         handleOpenModal={this.handleOpenModal}
@@ -43,8 +40,12 @@ class Home extends Component {
                         <ModalContainer>
                             <Modal
                                 handleClick={this.handleCloseModal}
-                            >
-                                <h1>Esto es un portal</h1>
+                            >   
+                            <VideoPlayer 
+                                autoplay
+                                src={this.state.media.src}
+                                title={this.state.media.title}
+                            />                             
                             </Modal>
                         </ModalContainer>
                     }               
